@@ -3,7 +3,6 @@ from excel_processor import process_excel
 from pydantic import BaseModel
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 
 import os
 import shutil
@@ -60,7 +59,6 @@ os.makedirs(
 # =========================================
 # STATIC CHART ACCESS
 # =========================================
-
 app.mount(
     "/charts",
     StaticFiles(directory="charts"),
