@@ -1,4 +1,8 @@
 import pandas as pd
+
+import matplotlib
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
 import os
 
@@ -132,8 +136,18 @@ First 5 Rows:
 
             chart_name = f"{col}_chart.png"
 
+            charts_dir = os.path.join(
+                os.getcwd(),
+                "charts"
+            )
+
+            os.makedirs(
+                charts_dir,
+                exist_ok=True
+            )
+
             chart_path = os.path.join(
-                "charts",
+                charts_dir,
                 chart_name
             )
 
@@ -143,6 +157,16 @@ First 5 Rows:
                 dpi=200
             )
 
+            print(
+                "Chart path:",
+                chart_path
+            )
+
+            print(
+                "File exists:",
+                os.path.exists(chart_path)
+            )
+
             plt.close()
 
             # =========================================
@@ -150,7 +174,7 @@ First 5 Rows:
             # =========================================
 
             chart_url = (
-                f"/charts/{chart_name}"
+                f"https://insightiq-boi2.onrender.com/charts/{chart_name}"
             )
 
             charts.append(chart_url)
@@ -169,13 +193,13 @@ First 5 Rows:
     # =========================================
 
     return {
-    "summary": summary,
-    "charts": charts,
+        "summary": summary,
+        "charts": charts,
 
-    "stats": {
-        "rows": rows,
-        "columns": cols,
-        "numeric_columns": len(numeric_cols),
-        "charts_generated": len(charts),
+        "stats": {
+            "rows": rows,
+            "columns": cols,
+            "numeric_columns": len(numeric_cols),
+            "charts_generated": len(charts),
+        }
     }
-}
