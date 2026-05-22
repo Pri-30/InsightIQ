@@ -150,7 +150,7 @@ First 5 Rows:
             # =========================================
 
             chart_url = (
-                f"http://127.0.0.1:8000/charts/{chart_name}"
+                f"/charts/{chart_name}"
             )
 
             charts.append(chart_url)
