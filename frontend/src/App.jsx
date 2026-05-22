@@ -31,6 +31,7 @@ function App() {
 
   const chatRef = useRef(null);
 
+  const API_BASE = "https://insightiq-boi2.onrender.com";
   // =========================
   // CLOSE CHAT ON OUTSIDE CLICK
   // =========================
@@ -92,8 +93,8 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/upload",
-        formData
+      `${API_BASE}/upload`,
+       formData
       );
 
       setSummary(response.data.summary);
@@ -141,7 +142,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/ai-chat",
+        `${API_BASE}/ai-chat`,
         {
           message: currentMessage,
         }
