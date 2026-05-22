@@ -100,7 +100,12 @@ function App() {
       setSummary(response.data.summary);
 
       if (response.data.charts) {
-        setCharts(response.data.charts);
+        setCharts(
+           response.data.charts.map(
+            (chart) =>
+              `https://insightiq-boi2.onrender.com/${chart}`
+          )
+        );
       } else {
         setCharts([]);
       }
@@ -331,7 +336,7 @@ function App() {
 
           <h1
             style={{
-              fontSize: "96px",
+              fontSize: "clamp(48px, 6vw, 96px)",
               lineHeight: "1.05",
               marginBottom: "34px",
               fontWeight: "900",
@@ -345,7 +350,7 @@ function App() {
 
           <p
             style={{
-              fontSize: "30px",
+              fontSize: "clamp(18px, 2vw, 30px)",
               color: "#c5c7d0",
               lineHeight: "1.9",
               maxWidth: "760px",
@@ -483,7 +488,7 @@ function App() {
 
           <h1
             style={{
-              fontSize: "72px",
+              fontSize: "clamp(40px, 5vw, 72px)",
               marginTop: "20px",
               marginBottom: "0",
             }}
@@ -606,7 +611,7 @@ function App() {
 
           <h1
             style={{
-              fontSize: "78px",
+              fontSize: "clamp(42px, 5vw, 78px)",
               marginBottom: "24px",
               lineHeight: "1.1",
             }}
@@ -704,7 +709,7 @@ function App() {
           >
             <h1
               style={{
-                fontSize: "68px",
+                fontSize: "clamp(38px, 5vw, 68px)",
                 margin: 0,
               }}
             >
@@ -848,7 +853,7 @@ function App() {
               <h2
                 style={{
                   margin: 0,
-                  fontSize: "42px",
+                  fontSize: "clamp(24px, 3vw, 42px)",
                   fontWeight: "900",
                 }}
               >
@@ -1014,7 +1019,7 @@ function App() {
           <div>
             <h1
               style={{
-                fontSize: "56px",
+                fontSize: "clamp(32px, 4vw, 56px)",
                 marginBottom: "24px",
               }}
             >
@@ -1142,14 +1147,14 @@ const iconBox = {
 };
 
 const featureTitle = {
-  fontSize: "44px",
+  fontSize: "clamp(26px, 3vw, 44px)",
   marginBottom: "24px",
   marginTop: 0,
 };
 
 const featureText = {
   color: "#b0b0b0",
-  fontSize: "24px",
+  fontSize: "clamp(16px, 1.5vw, 24px)",,
   lineHeight: "2",
   marginBottom: "34px",
 };
