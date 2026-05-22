@@ -181,6 +181,7 @@ function App() {
   return (
     <div
       style={{
+        zoom: "0.82",
         background:
           "linear-gradient(to bottom, #050816, #081122, #0b1020)",
         minHeight: "100vh",
