@@ -11,6 +11,8 @@ function App() {
   const [summary, setSummary] = useState("");
 
   const [loading, setLoading] = useState(false);
+  
+  const [chatLoading, setChatLoading] = useState(false);
 
   const [charts, setCharts] = useState([]);
 
@@ -21,7 +23,7 @@ function App() {
   const [showChat, setShowChat] = useState(false);
 
   const [chatInput, setChatInput] = useState("");
-
+ 
   const [chatMessages, setChatMessages] = useState([
     {
       sender: "ai",
@@ -73,6 +75,25 @@ function App() {
         behavior: "smooth",
       });
     }
+  };
+
+  // DOWNLOAD REPORT FUNCTION
+   const downloadReport = () => { 
+    const blob = new Blob([summary], {
+      type: "text/plain",
+    });
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+
+    a.href = url;
+
+    a.download = "InsightIQ_Report.txt";
+
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   };
 
   // =========================
@@ -146,6 +167,7 @@ function App() {
     setChatInput("");
 
     try {
+      setChatLoading(true);
       const response = await axios.post(
         `${API_BASE}/ai-chat`,
         {
@@ -175,6 +197,8 @@ function App() {
           text: "AI service is temporarily unavailable.",
         },
       ]);
+    } finally {
+      setChatLoading(false);
     }
   };
 
@@ -310,7 +334,7 @@ function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "180px 8% 120px",
+          padding: "140px 6% 80px",
           gap: "90px",
           flexWrap: "wrap",
         }}
@@ -320,7 +344,7 @@ function App() {
         <div
           style={{
             flex: 1,
-            minWidth: "420px",
+            minWidth: "280px",
           }}
         >
           <p
@@ -418,8 +442,8 @@ function App() {
         <div
           style={{
             position: "relative",
-            width: "520px",
-            height: "520px",
+            width: "min(520px, 90vw)",
+            height: "min(520px, 90vh)",
           }}
         >
           <div
@@ -502,7 +526,7 @@ function App() {
           style={{
             display: "grid",
             gridTemplateColumns:
-              "repeat(auto-fit, minmax(360px, 1fr))",
+              "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "34px",
           }}
         >
@@ -592,7 +616,7 @@ function App() {
             border:
               "1px solid rgba(255,255,255,0.08)",
             borderRadius: "36px",
-            padding: "90px",
+            padding: "clamp(30px, 5vw, 90px)",
             textAlign: "center",
             boxShadow:
               "0 0 70px rgba(124,131,255,0.12)",
@@ -752,9 +776,31 @@ function App() {
               ? summary
               : "Upload a document to generate intelligent summaries, analytics, charts, and AI-powered insights."}
           </div>
+                 
+          {/* REPORT */}
+          {summary && (
+            <button
+              onClick={downloadReport}
+              style={{
+                marginTop: "28px",
+                padding: "18px 30px",
+                borderRadius: "16px",
+                border: "none",
+                background:
+                  "linear-gradient(to right, #9333ea, #3b82f6)",
+                color: "white",
+                fontSize: "18px",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              Download Report
+            </button>
+          )}
 
           {/* ========================= */}
           {/* CHARTS */}
+          {/* ========================= */}
           {/* ========================= */}
 
           {charts.length > 0 && (
@@ -776,7 +822,7 @@ function App() {
                 style={{
                   display: "grid",
                   gridTemplateColumns:
-                    "repeat(auto-fit, minmax(360px, 1fr))",
+                    "repeat(auto-fit, minmax(280px, 1fr))",
                   gap: "30px",
                 }}
               >
@@ -794,11 +840,27 @@ function App() {
                     }}
                   >
                     <img
-                      src={chart}
+                      src={`${chart}?t=${new Date().getTime()}`}
                       alt="Excel Chart"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      crossOrigin="anonymous"
+                      onLoad={() => {
+                        console.log("Chart loaded:", chart);
+                      }}
+                      onError={(e) => {
+                        console.log("Chart failed:", chart);
+                        e.target.src =
+                          "https://placehold.co/800x400/111827/FFFFFF?text=Chart+Failed";
+                      }}
+                      
                       style={{
                         width: "100%",
                         borderRadius: "18px",
+                        display: "block",
+                        objectFit: "contain",
+                        minHeight: "300px",
+                        background: "#0f172a",
                       }}
                     />
                   </div>
@@ -825,8 +887,8 @@ function App() {
         {showChat && (
           <div
             style={{
-              width: "560px",
-              height: "780px",
+              width: "min(560px, 92vw)",
+              height: "min(780px, 82vh)",
               background:
                 "linear-gradient(to bottom, #0b1020, #111827)",
               border:
@@ -955,6 +1017,7 @@ function App() {
 
               <button
                 onClick={sendMessage}
+                disabled={chatLoading}
                 style={{
                   padding: "20px 28px",
                   borderRadius: "20px",
@@ -967,7 +1030,7 @@ function App() {
                   fontSize: "20px",
                 }}
               >
-                Send
+                {chatLoading ? "Thinking..." : "Send"}
               </button>
             </div>
           </div>
@@ -1155,7 +1218,7 @@ const featureTitle = {
 
 const featureText = {
   color: "#b0b0b0",
-  fontSize: "clamp(16px, 1.5vw, 24px)",,
+  fontSize: "clamp(16px, 1.5vw, 24px)",
   lineHeight: "2",
   marginBottom: "34px",
 };
