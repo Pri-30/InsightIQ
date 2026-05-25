@@ -1166,13 +1166,13 @@ const primaryBtn = {
 };
 
 const secondaryBtn = {
-  padding: "24px 44px",
+  padding: "clamp(14px, 2vw, 24px) clamp(24px, 4vw, 44px)",
   borderRadius: "999px",
   border: "1px solid rgba(255,255,255,0.2)",
   background: "transparent",
   color: "white",
   cursor: "pointer",
-  fontSize: "21px",
+  fontSize: "clamp(14px, 1.5vw, 21px)",
 };
 
 const statCard = {
@@ -1235,14 +1235,14 @@ const featureText = {
 };
 
 const cardBtn = {
-  padding: "18px 32px",
+  padding: "clamp(12px, 2vw, 18px) clamp(20px, 3vw, 32px)",
   borderRadius: "999px",
   border: "none",
   background:
     "linear-gradient(to right, #9333ea, #3b82f6)",
   color: "white",
   cursor: "pointer",
-  fontSize: "19px",
+  fontSize: "clamp(14px, 1.4vw, 19px)",
   fontWeight: "700",
 };
 
