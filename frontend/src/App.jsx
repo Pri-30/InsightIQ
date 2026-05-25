@@ -34,6 +34,7 @@ function App() {
   const chatRef = useRef(null);
 
   const API_BASE = "https://insightiq-boi2.onrender.com";
+  const isMobile = window.innerWidth <= 768;
   // =========================
   // CLOSE CHAT ON OUTSIDE CLICK
   // =========================
@@ -200,7 +201,7 @@ function App() {
   return (
     <div
       style={{
-        zoom: "0.75",
+        zoom: isMobile ? "1" : "0.85",
         background:
           "linear-gradient(to bottom, #050816, #081122, #0b1020)",
         minHeight: "100vh",
@@ -230,7 +231,7 @@ function App() {
           style={{
             maxWidth: "1500px",
             margin: "auto",
-            padding: "26px 52px",
+            padding: isMobile ? "18px 20px" : "26px 52px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -256,7 +257,7 @@ function App() {
           <div
             style={{
               display: "flex",
-              gap: "34px",
+              gap: isMobile ? "14px" : "34px",
               alignItems: "center",
               flexWrap: "wrap",
             }}
@@ -329,8 +330,10 @@ function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "140px 6% 80px",
-          gap: "90px",
+          padding: isMobile
+            ? "120px 20px 60px"
+            : "140px 6% 80px",
+          gap: isMobile ? "40px" : "90px",
           flexWrap: "wrap",
         }}
       >
@@ -347,7 +350,7 @@ function App() {
               color: "#8b93ff",
               letterSpacing: "5px",
               marginBottom: "26px",
-              fontSize: "20px",
+              fontSize: window.innerWidth <= 768 ? "15px" : "20px",
               fontWeight: "700",
             }}
           >
@@ -712,7 +715,7 @@ function App() {
             background:
               "linear-gradient(to bottom right, #0b1020, #111827)",
             borderRadius: "36px",
-            padding: "70px",
+            padding: isMobile ? "24px" : "70px",
             border:
               "1px solid rgba(255,255,255,0.08)",
           }}
@@ -758,7 +761,7 @@ function App() {
               background: "#111827",
               padding: "52px",
               borderRadius: "28px",
-              fontSize: "25px",
+              fontSize: isMobile ? "16px" : "25px",
               lineHeight: "2",
               color: "#d1d5db",
               whiteSpace: "pre-wrap",
@@ -874,8 +877,8 @@ function App() {
         ref={chatRef}
         style={{
           position: "fixed",
-          bottom: "34px",
-          right: "34px",
+          bottom: isMobile ? "18px" : "34px",
+          right: isMobile ? "18px" : "34px",
           zIndex: 1000,
         }}
       >
@@ -883,7 +886,9 @@ function App() {
           <div
             style={{
               width: "min(560px, 92vw)",
-              height: "min(780px, 82vh)",
+              height: isMobile 
+                ? "75vh"
+                :"min(780px, 82vh)",
               background:
                 "linear-gradient(to bottom, #0b1020, #111827)",
               border:
@@ -1036,8 +1041,8 @@ function App() {
         <button
           onClick={() => setShowChat(!showChat)}
           style={{
-            width: "94px",
-            height: "94px",
+            width: isMobile ? "68px" : "94px",
+            height: isMobile ? "68px" : "94px",
             borderRadius: "50%",
             border: "none",
             background:
@@ -1062,7 +1067,9 @@ function App() {
         id="footer"
         style={{
           marginTop: "140px",
-          padding: "100px 6%",
+          padding: isMobile
+            ? "60px 20px"
+            : "100px 6%",
           borderTop:
             "1px solid rgba(255,255,255,0.08)",
         }}
@@ -1142,14 +1149,20 @@ const navBtn = {
 };
 
 const primaryBtn = {
-  padding: "24px 44px",
+  padding: 
+    window.innerWidth <= 768
+      ? "16px 28px"
+      :"24px 44px",
   borderRadius: "999px",
   border: "none",
   background: "white",
   color: "black",
   fontWeight: "700",
   cursor: "pointer",
-  fontSize: "21px",
+  fontSize:
+    window.innerWidth <= 768
+      ? "16px"
+      : "21px",
 };
 
 const secondaryBtn = {
@@ -1185,7 +1198,10 @@ const statText = {
 const featureCard = {
   background:
     "linear-gradient(to bottom right, #0b1020, #111827)",
-  padding: "50px",
+  padding:
+    window.innerWidth <= 768
+      ? "28px"
+      : "50px",
   borderRadius: "30px",
   border: "1px solid rgba(255,255,255,0.08)",
   minHeight: "320px",
