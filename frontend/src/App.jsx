@@ -121,12 +121,7 @@ function App() {
       setSummary(response.data.summary);
 
       if (response.data.charts) {
-        setCharts(
-           response.data.charts.map(
-            (chart) =>
-              `https://insightiq-boi2.onrender.com/${chart}`
-          )
-        );
+        setCharts(response.data.charts);
       } else {
         setCharts([]);
       }
