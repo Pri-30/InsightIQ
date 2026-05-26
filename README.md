@@ -224,21 +224,38 @@ Deployed on Render
 # Screenshots
 
 ## Home Page
-(Add screenshot here)
 
-## Upload Section
-(Add screenshot here)
-
-## AI Analysis
-(Add screenshot here)
-
-## Excel Charts
-(Add screenshot here)
-
-## AI Chat Assistant
-(Add screenshot here)
+![Home](./frontend/public/screenshots/home.png)
 
 ---
+
+## Features Section
+
+![Features](./frontend/public/screenshots/features.png)
+
+---
+
+## Upload Section
+
+![Upload](./frontend/public/screenshots/upload.png)
+
+---
+
+## AI Analysis
+
+![Analysis](./frontend/public/screenshots/analysis.png)
+
+---
+
+## Excel Analytics & Charts
+
+![Charts](./frontend/public/screenshots/charts.png)
+
+---
+
+## AI Chat Assistant
+
+![Chat](./frontend/public/screenshots/chat.png)
 
 # Learning Outcomes
 
