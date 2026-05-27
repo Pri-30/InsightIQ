@@ -154,7 +154,8 @@ First 5 Rows:
             plt.savefig(
                 chart_path,
                 bbox_inches="tight",
-                dpi=200
+                dpi=200,
+                facecolor="#ffffff"
             )
 
             print(
@@ -166,7 +167,10 @@ First 5 Rows:
                 "File exists:",
                 os.path.exists(chart_path)
             )
-
+            
+            import time
+            time.sleep(1)
+            
             plt.close()
 
             # =========================================
