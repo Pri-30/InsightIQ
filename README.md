@@ -219,6 +219,8 @@ Deployed on Vercel
 ## Backend
 Deployed on Render
 
+Note: Since the platform uses free-tier AI and cloud services, response generation may occasionally take additional time depending on server activity and API availability.
+
 ---
 
 # Screenshots
@@ -257,6 +259,26 @@ Deployed on Render
 
 ![Chat](./frontend/public/screenshots/chat.png)
 
+## Sample Test Files
+
+The repository includes sample datasets and documents used for testing InsightIQ functionalities.
+
+Supported examples include:
+
+* Excel datasets (.xlsx)
+* PDF documents (.pdf)
+* Text files (.txt)
+
+These files can be uploaded directly into the platform to test:
+
+* AI-generated summaries
+* Data visualization
+* Chart generation
+* Document analytics
+* Chatbot interaction
+
+---
+
 # Learning Outcomes
 
 Through this project, the following concepts were learned and implemented:
@@ -275,7 +297,7 @@ Through this project, the following concepts were learned and implemented:
 
 # Author
 
-## Prisha
+## Prisha Shekhawat
 
 B.Tech Student  
 Full Stack & AI Enthusiast
